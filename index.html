@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Roulette</title>
+    <style>
+        body {
+            text-align: center; /* 横方向の中央寄せ */
+            margin: 0;
+            padding-top: 20px; /* 上部に少し余白を追加 */
+        }
+
+        #roulette {
+            font-size: 2em; /* 大きい文字サイズ */
+        }
+
+        #control {
+            display: block;
+            margin: 0 auto; /* 横方向の中央寄せ */
+            padding: 10px 20px; /* ボタンの大きさを増やす */
+            font-size: 1em; /* ボタンの文字サイズ */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="roulette">S - X</div>
+    <button id="control" onclick="toggleRoulette()">Start/Stop</button>
+
+    <script>
+        var letters = ['A', 'I', 'E', 'O'];
+        var isSpinning = false;
+        var spinInterval;
+
+        function toggleRoulette() {
+            if (!isSpinning) {
+                isSpinning = true;
+                spinInterval = setInterval(function() {
+                    var randomIndex = Math.floor(Math.random() * letters.length);
+                    document.getElementById('roulette').innerText = 'S ' + letters[randomIndex] + ' X';
+                }, 100);
+            } else {
+                isSpinning = false;
+                clearInterval(spinInterval);
+            }
+        }
+    </script>
+</body>
+</html>
